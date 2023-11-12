@@ -20,8 +20,9 @@ use App\Http\Controllers\DoctorsController;
 // Rutas para mostrar la lista de médicos
 Route::get('/doctors', [DoctorsController::class, 'index']);
 
+
 // Rutas para crear un nuevo médico
-Route::post('/doctors', [DoctorsController::class, 'store']);
+Route::post('/doctors/store', [DoctorsController::class, 'store']);
 
 // Rutas para mostrar un médico específico
 Route::get('/doctors/show', [DoctorsController::class, 'show']);
