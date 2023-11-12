@@ -13,7 +13,18 @@ return new class extends Migration
     {
         Schema::create('prescriptions', function (Blueprint $table) {
             $table->id();
+            $table->string('doctor_name');
+            $table->text('indications');
+            $table->integer('duration');
+            $table->string('frecuency');
+            $table->unsignedBigInteger('patient_id');
+            $table->unsignedBigInteger('medicines_id');
+            $table->string('tradename');
             $table->timestamps();
+
+            // Definir las claves foráneas
+            $table->foreign('patient_id')->references('id')->on('patients');
+            $table->foreign('medicines_id')->references('id')->on('medicines');
         });
     }
 
@@ -25,3 +36,4 @@ return new class extends Migration
         Schema::dropIfExists('prescriptions');
     }
 };
+

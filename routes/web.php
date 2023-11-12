@@ -13,9 +13,10 @@ use App\Http\Controllers\DoctorsController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-/*Route::get('/', function () {
+Route::get('/', function () {
     return view('welcome');
-});*/
-Route::post('/doctors',[DoctorsController::class,'store']);
+});
+Route::get("/Doctors_show", [DoctorsController::class,"show"]);
+//Route::post('/doctors',[DoctorsController::class,'store']);
 
 
