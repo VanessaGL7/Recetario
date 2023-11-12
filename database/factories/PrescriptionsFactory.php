@@ -17,7 +17,13 @@ class PrescriptionsFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'doctor_name' => $this->faker->name,
+            'indications' => $this->faker->text,
+            'duration' => $this->faker->numberBetween($min = 1, $max = 20),
+            'frecuency' => $this->faker->word,
+            'patient_id' => \App\Models\Patient::factory(),
+            'medicines_id' => \App\Models\Medicines::factory(),
+            'tradename' => $this->faker->word,
         ];
     }
 }

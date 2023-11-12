@@ -25,7 +25,7 @@ return new class extends Migration
             $table->timestamps();
 
             // Definición de clave foránea
-            $table->foreign('id_medicine_type')->references('id')->on('medicine_types');
+            $table->foreign('id_medicine_type')->references('id')->on('medicinestypes');
         });
     }
 

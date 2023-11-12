@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 
-class Medicines_type extends Model
+class Medicinestype extends Model
 {
     use HasFactory;
     protected $fillable = ['id','type_name','description'];
@@ -16,4 +16,10 @@ class Medicines_type extends Model
     {
         return $this->hasMany(Medicines::class);
     }
+    // En el modelo Medicine
+public function medicineType()
+{
+    return $this->belongsTo(Medicinestype::class, 'id_medicine_type');
+}
+
 }

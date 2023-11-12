@@ -32,7 +32,7 @@ class DoctorsController extends Controller
         $doctor = Doctors::create([
             'doctor_name' => $request->doctor_name,
             'phone' => $request->phone,
-            'profecional_license' => $request->profecional_license,
+            'professional_license' => $request->profecional_license,
             'doctor_address' => $request->doctor_address,
             'institution' => $request->institution,
         ]);
