@@ -13,16 +13,15 @@ class Medicines extends Model
 
     protected $fillable = ['id','tradename','active_ingredient','presentation','dose','original_amount','current_amount','route_of_administration','expiration','id_medicine_type'];
 
-    public function Medicines(): HasMany    
+    public function Medicinestype()
     {
-        return $this->hasMany(Medicines::class,'id_medicine_type');
+        return $this->belongsTo(Medicinestype::class, 'id_medicine_type');
     }
-
     protected $fillable2 = ['id','tradename','active_ingredient','presentation','dose','original_amount','current_amount','route_of_administartion','expiration','id_medicine_type'];
 
     public function Prescriptions(): BelongsTo
     {
-        return $this->BelongsTo(Prescriptions::class);
+        return $this->belongsTo(Medicinestype::class, 'id_medicine_type');
     }
     
 }

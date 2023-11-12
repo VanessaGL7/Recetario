@@ -9,23 +9,23 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Prescriptions extends Model
 {
     use HasFactory;
-    
-    protected $fillable = ['id','doctor_name','indications','duration','frecuency','patient_id','medicines_id','tradename'];
 
-    public function Medicines(): HasMany    
-    {
-        return $this->hasMany(Medicines::class);
-    }
-    protected $fillable2 = ['id','doctor_name','indications','duration','frecuency','patient_id','medicines_id','tradename'];
+    protected $fillable = ['id', 'doctor_name', 'indications', 'duration', 'frecuency', 'patient_id', 'medicines_id', 'tradename'];
 
-    public function Patient(): HasMany    
+    public function medicines()
     {
-        return $this->hasMany(Patient::class);
+        return $this->belongsTo(Medicines::class, 'medicines_id');
     }
-    protected $fillable3 = ['id','doctor_name','indications','duration','frecuency','patient_id','medicines_id','tradename'];
 
-    public function Doctors(): HasMany    
+    public function patient()
     {
-        return $this->hasMany(Doctors::class);
+        return $this->belongsTo(Patient::class, 'patient_id');
     }
+
+    public function doctor()
+    {
+        return $this->belongsTo(Doctors::class, 'doctor_id');
+    }
+
+
 }

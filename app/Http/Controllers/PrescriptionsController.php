@@ -7,25 +7,16 @@ use App\Models\Prescriptions;
 
 class PrescriptionsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        // Tu lógica para mostrar una lista de prescripciones
+
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        // Tu lógica para mostrar el formulario de creación de prescripciones
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $prescription = Prescriptions::create([
@@ -41,56 +32,60 @@ class PrescriptionsController extends Controller
         return $prescription;
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Request $request)
     {
-        $prescription = Prescriptions::where('doctor_name', $request->doctor_name)
-            ->orWhere('indications', $request->indications)
-            ->get();
+        $prescription = Prescriptions::find($request->id);
 
-        return $prescription;
+    if (!$prescription) {
+        return response()->json(['error' => 'Prescription not found'], 404);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    return response()->json(['data' => $prescription], 200);
+        
+    }
+
     public function edit(Request $request)
     {
-        $prescription = Prescriptions::where('doctor_name', $request->doctor_name)
-            ->orWhere('indications', $request->indications)
-            ->first();
+        $prescription = Prescriptions::find($request->id);
+
+        if (!$prescription) {
+            return response()->json(['error' => 'Prescription not found'], 404);
+        }
 
         return $prescription->id;
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request)
     {
         $prescription = Prescriptions::find($request->id);
-        $prescription->doctor_name = $request->doctor_name;
-        $prescription->indications = $request->indications;
-        $prescription->duration = $request->duration;
-        $prescription->frequency = $request->frequency;
-        $prescription->patient_id = $request->patient_id;
-        $prescription->medicines_id = $request->medicines_id;
-        $prescription->tradename = $request->tradename;
+
+        if (!$prescription) {
+            return response()->json(['error' => 'Prescription not found'], 404);
+        }
+
+        // Update prescription fields
+        $prescription->fill($request->all());
         $prescription->save();
 
-        return $request;
+        return $prescription;
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Request $request)
     {
-        $prescription = Prescriptions::where('id', $request->id)->delete();
+        $prescription = Prescriptions::find($request->id);
 
-        return 'ok';
+        if (!$prescription) {
+            return response()->json(['message' => 'Prescripción no encontrada'], 404);
+        }
+
+        $isDeleted = $prescription->delete();
+
+        if ($isDeleted) {
+            return response()->json(['message' => 'Prescripción eliminada con éxito']);
+        } else {
+            return response()->json(['message' => 'Error al eliminar la prescripción'], 500);
+        }
     }
 
     public function token()

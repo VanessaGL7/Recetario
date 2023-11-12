@@ -70,10 +70,21 @@ class MedicinesTypeController extends Controller
      */
     public function destroy(Request $request)
     {
-        $medicine = Medicinestype::where('id', $request->id)->delete();
+        $medicine = Medicinestype::where('id', $request->id);
+        if (!$medicine) {
+            return response()->json(['message' => $medicine], 404);
+        }
 
-        return 'ok';
+        // Eliminar registros relacionados en otras tablas
+        $medicine->medicines()->delete();
+        $medicine->prescriptions()->delete();
+
+        // Ahora elimina el registro principal
+        $medicine->delete();
+
+        return response()->json(['message' => 'Registro eliminado con éxito']);
     }
+
 
     public function token()
     {

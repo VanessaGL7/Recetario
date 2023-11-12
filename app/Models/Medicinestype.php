@@ -14,12 +14,12 @@ class Medicinestype extends Model
 
     public function Medicines(): HasMany    
     {
-        return $this->hasMany(Medicines::class);
+        return $this->hasMany(Medicines::class,'id_medicine_type');
     }
     // En el modelo Medicine
-public function medicineType()
-{
-    return $this->belongsTo(Medicinestype::class, 'id_medicine_type');
-}
+    public function Prescriptions()
+    {
+        return $this->hasMany(Prescriptions::class, 'id_medicine_type');
+    }
 
 }
