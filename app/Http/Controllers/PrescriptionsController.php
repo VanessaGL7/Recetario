@@ -32,7 +32,7 @@ class PrescriptionsController extends Controller
             'doctor_name' => $request->doctor_name,
             'indications' => $request->indications,
             'duration' => $request->duration,
-            'frequency' => $request->frequency,
+            'frecuency' => $request->frecuency,
             'patient_id' => $request->patient_id,
             'medicines_id' => $request->medicines_id,
             'tradename' => $request->tradename,

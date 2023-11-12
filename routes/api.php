@@ -6,7 +6,7 @@ use App\Http\Controllers\DoctorsController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\MedicinesController;
 use App\Http\Controllers\MedicinesTypeController;
-use App\Http\Controllers\PatientsController;
+use App\Http\Controllers\PatientController;
 use App\Http\Controllers\PrescriptionsController;
 
 
@@ -43,11 +43,11 @@ Route::get('/medicine-types/show', [MedicinesTypeController::class, 'show']);
 Route::put('/medicine-types/update', [MedicinesTypeController::class, 'update']);
 Route::delete('/medicine-types/destroy', [MedicinesTypeController::class, 'destroy']);
 //___________________________________________________________________________
-Route::get('/patients', [PatientsController::class, 'index']);
-Route::post('/patients/store', [PatientsController::class, 'store']);
-Route::get('/patients/show', [PatientsController::class, 'show']);
-Route::put('/patients/update', [PatientsController::class, 'update']);
-Route::delete('/patients/destroy', [PatientsController::class, 'destroy']);
+Route::get('/patients', [PatientController::class, 'index']);
+Route::post('/patients/store', [PatientController::class, 'store']);
+Route::get('/patients/show', [PatientController::class, 'show']);
+Route::put('/patients/update', [PatientController::class, 'update']);
+Route::delete('/patients/destroy', [PatientController::class, 'destroy']);
 //___________________________________________________________________________
 Route::get('/prescriptions', [PrescriptionsController::class, 'index']);
 Route::post('/prescriptions/store', [PrescriptionsController::class, 'store']);
