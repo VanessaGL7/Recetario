@@ -13,7 +13,7 @@ class RegisterController extends ResponseController
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'UserName' => 'required',
+            'name' => 'required',
             'email'  => 'required|email',
             'email_verified_at'  => 'required|same:email',
             'password' => 'required',
@@ -35,33 +35,20 @@ class RegisterController extends ResponseController
         'User register successfully.');
     }
 //login
-    public function login(Request $request)
-    {
-        /*if(Auth::attempt(['email'=> $request->email,
-        'password' => $request->password])){
-            $user = Auth::user();
-            $success['token'] = $user->createToken('seguridad ')
-            ->accessToken;
-            $success['UserName'] = $user->name;
-            return $this->sendResponse($success,
-            'User login successfully.');
-        }
-        else{
-            return $this->sendError('Unauthorised.',
-            ['error'=>'Unauthorised']);
-        }*/
+public function login(Request $request)
+{
+    $data = $request->validate([
+        'email' => 'email|required',
+        'password' => 'required',
+    ]);
 
-        $data = $request ->validate([
-            'email' => 'email|required',
-            'password' => 'required',
-        ]);
-
-        
-    
-        if (!auth()->attempt($data)) {
-            return response(['error' => 'No Autorizado'], 401);
-        }
-        $token = auth()->user()->createToken('Login')->accessToken;
-        return response(['user' => auth()->user(), 'access_token' => $token], 200);
+    if (!auth()->attempt($data)) {
+        return response(['error' => 'No Autorizado'], 401);
     }
+
+    $token = auth()->user()->createToken('Login')->accessToken;
+    
+    // No incluir el token en la respuesta
+    return response(['user' => auth()->user()], 200);
+}
 }

@@ -10,7 +10,7 @@ class Doctors extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id','doctor_name,phone','professional_license','doctor_address','institution'];
+    protected $fillable = ['id','doctor_name','phone','professional_license','doctor_address','institution'];
 
     public function Prescriptions(): HasMany
     {
