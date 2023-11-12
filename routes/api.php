@@ -15,13 +15,31 @@ use App\Http\Controllers\DoctorsController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-Route::post('Doctors_store',[DoctorsController::class,'store']);
-// Ejemplo en routes/api.php (para rutas de API)
-Route::get('/Doctors_show', [DoctorsController::class,"show"]);
 
 
+// Rutas para mostrar la lista de médicos
+Route::get('/doctors', [DoctorsController::class, 'index']);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+// Rutas para crear un nuevo médico
+Route::post('/doctors', [DoctorsController::class, 'store']);
+
+// Rutas para mostrar un médico específico
+Route::get('/doctors/show', [DoctorsController::class, 'show']);
+
+// Rutas para editar un médico
+Route::get('/doctors/edit', [DoctorsController::class, 'edit']);
+
+// Rutas para actualizar un médico
+Route::put('/doctors/update', [DoctorsController::class, 'update']);
+
+// Rutas para eliminar un médico
+Route::delete('/doctors/destroy', [DoctorsController::class, 'destroy']);
+
+// Ruta para obtener el token CSRF (opcional)
+Route::get('/doctors/token', [DoctorsController::class, 'token']);
+
+
+/*Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
-});
+});*/
 
