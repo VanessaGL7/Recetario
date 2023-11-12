@@ -5,22 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Patient;
 
-class PatientController extends Controller
+class PatientsController extends Controller
 {
-     /**
+    /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        // Implementa la lógica para mostrar una lista de pacientes si es necesario.
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        // Implementa la lógica para mostrar el formulario de creación de pacientes si es necesario.
+        // Tu lógica para mostrar una lista de pacientes
     }
 
     /**
@@ -44,11 +36,11 @@ class PatientController extends Controller
      */
     public function show(Request $request)
     {
-        $patients = Patient::where('patient_name', $request->patient_name)
-            ->orWhere('last_name', $request->last_name)
+        $patient = Patient::where('patient_name', $request->patient_name)
+            ->orWhere('id', $request->id)
             ->get();
 
-        return $patients;
+        return $patient;
     }
 
     /**
@@ -57,7 +49,7 @@ class PatientController extends Controller
     public function edit(Request $request)
     {
         $patient = Patient::where('patient_name', $request->patient_name)
-            ->orWhere('last_name', $request->last_name)
+            ->orWhere('id', $request->id)
             ->first();
 
         return $patient->id;
@@ -85,6 +77,7 @@ class PatientController extends Controller
     public function destroy(Request $request)
     {
         $patient = Patient::where('id', $request->id)->delete();
+
         return 'ok';
     }
 

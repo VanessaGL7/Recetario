@@ -16,6 +16,9 @@ use App\Http\Controllers\DoctorsController;
 |
 */
 Route::post('Doctors_store',[DoctorsController::class,'store']);
+// Ejemplo en routes/api.php (para rutas de API)
+Route::get('/Doctors_show', [DoctorsController::class,"show"]);
+
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

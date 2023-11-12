@@ -32,7 +32,7 @@ class DoctorsController extends Controller
         $doctor = Doctors::create([
             'doctor_name' => $request->doctor_name,
             'phone' => $request->phone,
-            'professional_license' => $request->profecional_license,
+            'professional_license' => $request->professional_license,
             'doctor_address' => $request->doctor_address,
             'institution' => $request->institution,
         ]);
@@ -72,7 +72,7 @@ class DoctorsController extends Controller
         $doctor = Doctors::find($request->id);
         $doctor->doctor_name = $request->doctor_name;
         $doctor->phone = $request->phone;
-        $doctor->profecional_license = $request->profecional_license;
+        $doctor->professional_license = $request->professional_license;
         $doctor->doctor_address = $request->doctor_address;
         $doctor->institution = $request->institution;
         $doctor->save();
