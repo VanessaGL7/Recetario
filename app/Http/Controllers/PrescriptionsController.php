@@ -33,16 +33,16 @@ class PrescriptionsController extends Controller
     }
 
     public function show(Request $request)
-    {
-        $prescription = Prescriptions::find($request->id);
+{
+    $prescription = Prescriptions::find($request->id);
 
     if (!$prescription) {
         return response()->json(['error' => 'Prescription not found'], 404);
     }
 
     return response()->json(['data' => $prescription], 200);
-        
-    }
+}
+
 
     public function edit(Request $request)
     {

@@ -25,16 +25,16 @@ class DatabaseSeeder extends Seeder
         // ]);
 
 
-        $this->call(PatientSeeder::class);
+        /*$this->call(PatientSeeder::class);
         $this->call(DoctorsSeeder::class);
         $this->call(MedicinestypeSeeder::class);
         $this->call(MedicinesSeeder::class);
-        $this->call(PrescriptionsSeeder::class);
+        $this->call(PrescriptionsSeeder::class);*/
 
-        /*Medicinestype::factory(10)->create();
+        Medicinestype::factory(10)->create();
         Medicines::factory(10)->create();
         Doctors::factory(10)->create();
         Patient::factory(10)->create();
-        Prescriptions::factory()->count(5)->create();*/
+        Prescriptions::factory()->count(5)->create();
     }
 }
