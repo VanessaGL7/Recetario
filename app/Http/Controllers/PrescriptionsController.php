@@ -93,3 +93,4 @@ class PrescriptionsController extends Controller
         return csrf_token();
     }
 }
+

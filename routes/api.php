@@ -58,6 +58,8 @@ Route::delete('/prescriptions/destroy', [PrescriptionsController::class, 'destro
 Route::post('/register', [RegisterController::class, 'register']);
 // Ruta para el inicio de sesión
 Route::post('/login', [RegisterController::class, 'login']);
+Route::get('token', [PatientController::class, 'token']);
+
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
