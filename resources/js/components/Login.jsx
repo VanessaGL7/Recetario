@@ -1,107 +1,130 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react'
+import ReactDOM from 'react-dom/client';
+import Card from 'react-bootstrap/Card';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal'
+import Form from 'react-bootstrap/Form';
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
-import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import AdminComponent from './AdminComponet';
+import { Link } from "react-router-dom";
+import Alert from 'react-bootstrap/Alert';
+import { AuthContext } from './AuthContext';
 
-const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
-  const [userRole, setUserRole] = useState('');
+function Login() {
 
-
-  const handleLogin = async () => {
-    try {
-      const response = await axios.post('http://localhost:80/Recetario/recetario/public/api/login', {
-        email: email,
-        password: password,
-      });
+    const [formOk, setFormOk] = useState(true);
+    const [textError, setTextError] = useState('');
   
-      // Access token is obtained from the server response
-      const token = response.data.token;
-      console.log('Access token:', token);
-
+    const [formValue, setformValue] = useState({
+      email: '',
+      password: '',
+    });
   
-      // You can do whatever you want with the token here, such as storing it in your component's state
-      setUserRole(response.data.user.role);
-  
-      setSuccessMessage('Successful login');
-      setErrorMessage(''); // Clear the error message if there is a previous one
-  
-      console.log('Authenticated user:', response.data.user);
-  
-      // Redirect based on the user role
-      if (response.data.user.role === 'admin') {
-        // Redirect to the admin page
-        window.location.href = './AdminComponet';
-      } else {
-        // Redirect to the regular user page
-       // window.location.href = '/user-page';
-      }
-    } catch (error) {
-      setErrorMessage('Error logging in: ' + error.response.data.error);
-      setSuccessMessage(''); // Clear the success message if there is a previous one
-      console.error('Error logging in:', error.response.data.error);
+    const listener = (e) => {
+      e.persist();
+      setformValue({ ...formValue, [e.target.name]: e.target.value });
     }
-  };
+    const [showWarningLogin, setShowWarningLogin] = useState(false);
+    const warningLoginClose = () => setShowWarningLogin(false);
+    const warningLoginShow = () => setShowWarningLogin(true);
+  
+    const { login } = useContext(AuthContext);
+    const { setUserLogged } = useContext(AuthContext);
+    const { setToken } = useContext(AuthContext);
 
-  return (
-    <div className="login-container"
-      style={{
-        backgroundImage: 'url("https://media0.giphy.com/media/ccKEsBDAAQTrutQ9LA/giphy.gif?cid=ecf05e47fyxzl2ak0f6maukyce8favh7jj1e0hwtv11x02du&ep=v1_gifs_search&rid=giphy.gif&ct=g")',
-        backgroundSize: 'cover',
-        minHeight: '100vh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}>
-      <Container className="mt-5" >
-        <Row className="justify-content-center">
-          <Col xs={12} sm={8} md={6} lg={4} className="shadow p-3 mb-5 bg-white rounded">
-            <div className="text-center mb-4">
-              <h2>Login</h2>
-            </div>
-            {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
-            {successMessage && <Alert variant="success">{successMessage}</Alert>}
-            <Form>
-              <Form.Group controlId="formEmail">
-                <Form.Label>Email:</Form.Label>
-                <Form.Control
-                  type="email"
-                  placeholder="Enter your email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
+    const [showSuccessLogin, setShowSuccessLogin] = useState(false);
+  
+    const successLoginShow = () => setShowSuccessLogin(true);
+  
+    const navigate = useNavigate();
+  
+    const logiin = async (e) => {
+        e.preventDefault();
+        setFormOk(true);
+      
+        if (formValue.email.trim() === "" || formValue.password.trim() === "") {
+          setTextError('Error, todos los campos son obligatorios');
+          setFormOk(false);
+          return;
+        }
+      
+        try {
+          const response = await axios.post("http://localhost/RECTERARIO/Recetario/public/api/login", {
+            email: formValue.email,
+            password: formValue.password,
+          });
+      
+          if (response.status === 200) {
+            const newToken = response.data.token;
+      
+            // Verificar y decodificar el token aquí si es necesario
+            const decodedToken = decodeToken(newToken);
+      
+            login(newToken);
+            successLoginShow();
+            navigate("/RECETARIO/Recetario/public");
+          }
+        } catch (error) {
+          console.log(error);
+          warningLoginShow();
+        }
+      };
+      
+  
+    return (
+      <Row className='mt-5 justify-content-center'>
+        {!formOk && (<Alert key='danger' variant='danger'>{textError}</Alert>)}
+        <Card style={{ width: '30rem' }}>
+          <Card.Body>
+            <Card.Title className='fw-bold fs-3'>Inicio de Sesión</Card.Title>
+            <Form onSubmit={login}>
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Email address</Form.Label>
+                <Form.Control type="email" placeholder="Enter email" name="email" value={formValue.email} onChange={listener} />
+                <Form.Text className="text-muted">
+                  Ingresa el correo electronico con el que te registraste.
+                </Form.Text>
               </Form.Group>
-
-              <Form.Group controlId="formPassword">
-                <Form.Label>Password:</Form.Label>
-                <Form.Control
-                  type="password"
-                  placeholder="Enter your password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
+              <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Label>Password</Form.Label>
+                <Form.Control type="password" name="password" placeholder="Password" value={formValue.password} onChange={listener} />
               </Form.Group>
-
-              <div className="text-center">
-                <Button
-                  variant="primary"
-                  type="button"
-                  onClick={handleLogin}
-                  className="mt-3"
-                >
-                  Log In
-                </Button>
-              </div>
+              <Button variant="primary" type="submit">Iniciar Sesion</Button>
+              <div className='text-center'><Form.Label className="mt-2">¿No tienes una cuenta? <Link to="/web-development/public/signin"><span className='text-primary' role="button">Registrate</span></Link></Form.Label></div>
             </Form>
-          </Col>
-        </Row>
-      </Container>
-    </div>
-  );
-};
-
-export default Login;
+          </Card.Body>
+        </Card>
+  
+        <Modal show={showSuccessLogin}>
+          <Modal.Header >
+            <Modal.Title>Inicio de sesion</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <p>Inicio de sesion exitoso</p>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="success" as={Link} to='/book-world/public/Panel'>Aceptar</Button>
+          </Modal.Footer>
+        </Modal>
+  
+        <Modal show={showWarningLogin} onHide={warningLoginClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Advertencia</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <p>Error al iniciar sesión, verifique sus datos</p>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="primary" onClick={warningLoginClose}>Cerrar</Button>
+          </Modal.Footer>
+        </Modal>
+  
+      </Row>
+    );
+  }
+  
+  export default Login;
+  
