@@ -4,7 +4,7 @@ import { Routes, Route } from 'react-router-dom'
 import { BrowserRouter } from 'react-router-dom'
 import NavBar from './NavBar';
 //AUTH
-import LoginScreen from './Auth/LoginScreen';
+import LoginScreen from './LoginScreen';
 import SignInScreen from './Auth/SignIn';
 //TABLES
 import DoctorsTable from './Tables/ProductTable';
