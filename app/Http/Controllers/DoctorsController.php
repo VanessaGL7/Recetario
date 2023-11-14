@@ -92,6 +92,11 @@ class DoctorsController extends Controller
 
     public function token()
     {
-        return csrf_token();
+        
+        
+        $token = csrf_token();
+        echo $token;
+        return $token;
+
     }
 }
