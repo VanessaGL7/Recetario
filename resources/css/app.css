@@ -1,0 +1,14 @@
+.background-container {
+    background-image: url('https://media0.giphy.com/media/ccKEsBDAAQTrutQ9LA/giphy.gif?cid=ecf05e47fyxzl2ak0f6maukyce8favh7jj1e0hwtv11x02du&ep=v1_gifs_search&rid=giphy.gif&ct=g'); /* Reemplaza 'ruta-de-tu-gif.gif' con la ruta correcta a tu GIF */
+    background-size: cover;
+    background-position: center;
+    height: 100vh; /* Ajusta la altura según tus necesidades */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Estilos adicionales para mejorar la apariencia de tu formulario */
+  .shadow {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }

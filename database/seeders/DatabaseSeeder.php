@@ -4,6 +4,11 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Doctors;
+use App\Models\Medicines;
+use App\Models\Medicinestype;
+use App\Models\Patient;
+use App\Models\Prescriptions;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,5 +23,18 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+
+        /*$this->call(PatientSeeder::class);
+        $this->call(DoctorsSeeder::class);
+        $this->call(MedicinestypeSeeder::class);
+        $this->call(MedicinesSeeder::class);
+        $this->call(PrescriptionsSeeder::class);*/
+
+        Medicinestype::factory(10)->create();
+        Medicines::factory(10)->create();
+        Doctors::factory(10)->create();
+        Patient::factory(10)->create();
+        Prescriptions::factory()->count(5)->create();
     }
 }

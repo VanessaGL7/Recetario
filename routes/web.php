@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\DoctorsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,7 +13,10 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get("/Doctors_show", [DoctorsController::class,"show"]);
+//Route::post('/doctors',[DoctorsController::class,'store']);
+
+
