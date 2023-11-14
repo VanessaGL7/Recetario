@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Laravel\Passport\HasApiTokens;
 use Validator;
 
-class RegisterController extends Controller
+class RegisterController extends ResponseController
 {
     public function register(Request $request)
     {
@@ -39,7 +39,20 @@ class RegisterController extends Controller
 
     public function login(Request $request)
     {
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+        if(Auth::attempt(['email'=>$request->email,
+        'password'=>$request->password])){
+            $user=Auth::user();
+            $success['token']=$user->createToken('MyApp')
+            ->accessToken;
+            $success['name']=$user->name;
+            return $this->sendResponse($success,
+            'User login successfully');
+    }
+    else{
+        return $this->sendError('Unauthorized.',
+        ['error'=>'Unauthorized']);
+    }
+        /*if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $user = Auth::user();
             $token = $user->createToken('MyApp')->accessToken;
 
@@ -47,7 +60,7 @@ class RegisterController extends Controller
             return response()->json(['token' => $token, 'name' => $user->name], 200);
         } else {
             return response()->json(['error' => 'Unauthorised'], 401);
-        }
+        }*/
     }
 }
 

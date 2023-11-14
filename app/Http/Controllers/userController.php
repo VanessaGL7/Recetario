@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Auth;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -46,5 +47,15 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         //
+    }
+    public function token(){
+        if (Auth::attempt(['email' => request('email'), 'password' => request('password')])) {
+            $user = Auth::user();
+            $token = $user->createToken('MyAppToken')->accessToken;
+    
+            return response()->json(['token' => $token]);
+        } else {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
     }
 }

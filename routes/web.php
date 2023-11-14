@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\DoctorsController;
@@ -19,6 +20,7 @@ use App\Http\Controllers\DoctorsController;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/token', [UserController::class, 'token']);
 Route::get("/Doctors_show", [DoctorsController::class,"show"]);
 //Route::post('/doctors',[DoctorsController::class,'store']);
 
