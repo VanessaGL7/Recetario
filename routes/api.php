@@ -1,12 +1,6 @@
 <?php
 
-<<<<<<< HEAD
 use App\Http\Controllers\Auth\JWTAuthController;
-use App\Http\Controllers\RegisterController;
-=======
-use App\Http\Controllers\Auth\AuthController;
-use Laravel\Passport\Http\Controllers\AccessTokenController;
->>>>>>> 51f6dcda6f698e0d1f23dfab7ec8124a10defd1d
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,7 +21,6 @@ use App\Http\Controllers\PrescriptionsController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-Route::post('/get_token',[AuthController::class,'getToken']);
 
 //protected routes
 Route::middleware('jwt.verify')->group(function () {
@@ -56,7 +49,7 @@ Route::middleware('jwt.verify')->group(function () {
 });
 
 //JWTAuth______________________________________________________________________
-Route::post('register',[RegisterController::class,'register']);
+Route::post('register',[JWTAuthController::class,'register']);
 Route::post('login',[JWTAuthController::class,'login']);
 
 //Doctors______________________________________________________________________
