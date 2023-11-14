@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\JWTAuthController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -49,7 +50,7 @@ Route::middleware('jwt.verify')->group(function () {
 });
 
 //JWTAuth______________________________________________________________________
-Route::post('register',[JWTAuthController::class,'register']);
+Route::post('register',[RegisterController::class,'register']);
 Route::post('login',[JWTAuthController::class,'login']);
 
 //Doctors______________________________________________________________________
