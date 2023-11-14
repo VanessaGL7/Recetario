@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from "react";
-
+import jwt_decode from "jwt-decode";
 
 export const AuthContext = createContext();
 
@@ -15,13 +15,24 @@ const AuthProvider = (props) => {
     const storedToken = sessionStorage.getItem('token');
 
     if (storedToken) {
-      setUserLogged(true);
-      setToken(storedToken);
+        const decodedToken = decodeToken(storedToken);
+
+        if(decodedToken.exp *1000 > Date.now()){
+            setUserLogged(true);
+            setToken(storedToken); 
+        }else{
+            logout();
+        }
     }
   }, []);
 
+  const decodeToken = (token) => {
+    return jwt-decode(token);
+  }
+
   // Función para iniciar sesión y establecer el token en sessionStorage
   const login = (newToken) => {
+    const decodedToken = decodeToken(newToken);
 
     sessionStorage.setItem('token', newToken);
     setUserLogged(true);
