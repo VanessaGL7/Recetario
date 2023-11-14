@@ -1,18 +1,3 @@
-<<<<<<< HEAD
-import ReactDOM from 'react-dom/client';
-import Main from './components/Main';
-import { BrowserRouter } from "react-router-dom";
-import './bootstrap';
-import '../css/app.css'
-
-
-
-ReactDOM.createRoot(document.getElementById("example")).render(
-  <BrowserRouter>
-    <Main></Main>
-  </BrowserRouter>
-);
-=======
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes React and other helpers. It's a great starting point while
@@ -38,4 +23,3 @@ ReactDOM.createRoot(document.getElementById("example")).render(
  */
 
 //require('./components/Example');
->>>>>>> 6ebaa07140d136a9a3c7849c82cf29d4bce5d21d
