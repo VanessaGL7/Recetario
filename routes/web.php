@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\DoctorsController;
@@ -13,6 +14,8 @@ use App\Http\Controllers\DoctorsController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+
 Route::get('/', function () {
     return view('welcome');
 });
