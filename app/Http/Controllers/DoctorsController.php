@@ -13,7 +13,8 @@ class DoctorsController extends Controller
      */
     public function index()
     {
-        // Tu lógica para mostrar una lista de médicos
+        $doctor = Doctors::all();
+        return response()->json($doctor);
     }
 
     /**
@@ -90,13 +91,5 @@ class DoctorsController extends Controller
         return 'ok';
     }
 
-    public function token()
-    {
-        
-        
-        $token = csrf_token();
-        echo $token;
-        return $token;
-
-    }
+    
 }

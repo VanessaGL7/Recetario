@@ -26,6 +26,7 @@ class PatientController extends Controller
             'weight' => $request->weight,
             'height' => $request->height,
             'allergic' => $request->allergic,
+            'email' => $request->email,
         ]);
 
         return $patient;
@@ -66,6 +67,7 @@ class PatientController extends Controller
         $patient->weight = $request->weight;
         $patient->height = $request->height;
         $patient->allergic = $request->allergic;
+        $patient->email = $request->email;
         $patient->save();
 
         return $request;
@@ -81,8 +83,4 @@ class PatientController extends Controller
         return 'ok';
     }
 
-    public function token()
-    {
-        return csrf_token();
-    }
 }

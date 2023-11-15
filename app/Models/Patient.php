@@ -11,7 +11,7 @@ class Patient extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id','patient_name','age','weight','height','allergic'];
+    protected $fillable = ['id','patient_name','age','weight','height','allergic','email'];
 
     public function Prescriptions(): HasMany    
     {

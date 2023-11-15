@@ -18,7 +18,11 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->string('role')->default('user'); // Agregar columna para el rol
+            $table->string('image')->nullable(); // Agregar columna para la imagen
             $table->timestamps();
+
+        
         });
     }
 

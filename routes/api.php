@@ -23,33 +23,6 @@ use App\Http\Controllers\PrescriptionsController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-
-//protected routes
-Route::middleware('auth:api')->group(function () {
-    //UserList________________________________________________________________________
-    Route::get('users',[UserController::class,'index']);
-    //Doctors_________________________________________________________________________
-    Route::post('/doctors/store', [DoctorsController::class, 'store']);
-    Route::delete('/doctors/destroy', [DoctorsController::class, 'destroy']);
-    Route::post('/doctors/update', [DoctorsController::class, 'update']);
-    //Medicines_______________________________________________________________________
-    Route::post('/medicines/store', [MedicinesController::class, 'store']);
-    Route::post('/medicines/update', [MedicinesController::class, 'update']);
-    Route::delete('/medicines/destroy', [MedicinesController::class, 'destroy']);
-    //MedicineTypes___________________________________________________________________
-    Route::post('/medicine-types/store', [MedicinesTypeController::class, 'store']);
-    Route::post('/medicine-types/update', [MedicinesTypeController::class, 'update']);
-    Route::delete('/medicine-types/destroy', [MedicinesTypeController::class, 'destroy']);
-    //Patients________________________________________________________________________
-    Route::post('/patients/store', [PatientController::class, 'store']);
-    Route::post('/patients/update', [PatientController::class, 'update']);
-    Route::delete('/patients/destroy', [PatientController::class, 'destroy']);
-    //Prescriptions___________________________________________________________________
-    Route::post('/prescriptions/store', [PrescriptionsController::class, 'store']);
-    Route::post('/prescriptions/update', [PrescriptionsController::class, 'update']);
-    Route::delete('/prescriptions/destroy', [PrescriptionsController::class, 'destroy']);
-});
-
 //Passport_____________________________________________________________________
 Route::post('register',[RegisterController::class,'register']);
 Route::post('login',[RegisterController::class,'login']);
@@ -73,3 +46,32 @@ Route::get('/patients/show', [PatientController::class, 'show']);
 //Prescriptions_________________________________________________________________
 Route::get('/prescriptions', [PrescriptionsController::class, 'index']);
 Route::get('/prescriptions/show', [PrescriptionsController::class, 'show']);
+
+//protected routes
+Route::middleware('auth:api')->group(function () {
+   
+});
+
+ //UserList________________________________________________________________________
+ Route::get('users',[UserController::class,'index']);
+ //Doctors_________________________________________________________________________
+ Route::post('/doctors/store', [DoctorsController::class, 'store']);
+ Route::post('/doctors/update', [DoctorsController::class, 'update']);
+ Route::post('/doctors/destroy', [DoctorsController::class, 'destroy']);
+
+ //Medicines_______________________________________________________________________
+ Route::post('/medicines/store', [MedicinesController::class, 'store']);
+ Route::post('/medicines/update', [MedicinesController::class, 'update']);
+ Route::delete('/medicines/destroy', [MedicinesController::class, 'destroy']);
+ //MedicineTypes___________________________________________________________________
+ Route::post('/medicine-types/store', [MedicinesTypeController::class, 'store']);
+ Route::post('/medicine-types/update', [MedicinesTypeController::class, 'update']);
+ Route::delete('/medicine-types/destroy', [MedicinesTypeController::class, 'destroy']);
+ //Patients________________________________________________________________________
+ Route::post('/patients/store', [PatientController::class, 'store']);
+ Route::post('/patients/update', [PatientController::class, 'update']);
+ Route::delete('/patients/destroy', [PatientController::class, 'destroy']);
+ //Prescriptions___________________________________________________________________
+ Route::post('/prescriptions/store', [PrescriptionsController::class, 'store']);
+ Route::post('/prescriptions/update', [PrescriptionsController::class, 'update']);
+ Route::delete('/prescriptions/destroy', [PrescriptionsController::class, 'destroy']);

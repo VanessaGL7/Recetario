@@ -9,7 +9,7 @@ use App\Models\Medicines;
 use App\Models\Medicinestype;
 use App\Models\Patient;
 use App\Models\Prescriptions;
-
+use App\Models\User;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -36,5 +36,7 @@ class DatabaseSeeder extends Seeder
         Doctors::factory(10)->create();
         Patient::factory(10)->create();
         Prescriptions::factory()->count(5)->create();
+        User::factory(10)->create();
+        
     }
 }

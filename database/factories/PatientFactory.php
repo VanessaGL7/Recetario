@@ -22,6 +22,7 @@ class PatientFactory extends Factory
             'weight' => $this->faker->randomFloat($nbMaxDecimals = 2, $min = 40, $max = 120),
             'height' => $this->faker->numberBetween($min = 140, $max = 200),
             'allergic' => $this->faker->boolean,
+            'email' => $this->faker->unique()->safeEmail(),
         ];
     }
 }
