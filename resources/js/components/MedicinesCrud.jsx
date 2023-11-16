@@ -98,7 +98,7 @@ const MedicinesCrud = () => {
     fetchMedicines();
   }, []);
 
-  // Filtrar medicamentos por término de búsqueda
+  // Filter medications by search term
   const filteredMedicines = medicines.filter((medicine) =>
     medicine.tradename.toLowerCase().includes(searchTerm.toLowerCase())
   );

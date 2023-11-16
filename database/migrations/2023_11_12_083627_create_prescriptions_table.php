@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('tradename');
             $table->timestamps();
 
-            // Definir las claves foráneas
+            // Foreign Key Definition
             $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
             $table->foreign('medicines_id')->references('id')->on('medicines')->onDelete('cascade');
         });

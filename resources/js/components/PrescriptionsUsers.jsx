@@ -23,10 +23,10 @@ const PrescriptionsCrud = () => {
         fetchPrescriptions();
     }, []);
 
-    // Filtrar recetas por término de búsqueda
+    // Filter recipes by search term
     // ...
 
-    // Filtrar recetas por término de búsqueda y patient_id
+    // Filter recipes by search term and patient_id
     const filteredPrescriptions = prescriptions.filter((prescription) =>
         prescription.doctor_name.toLowerCase().includes(searchTerm.toLowerCase())
     );

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->decimal('weight', 5, 2);
             $table->decimal('height', 5, 2);
             $table->string('allergic', 255)->nullable();
-            $table->string('email'); // Agregar la columna email como clave foránea
+            $table->string('email'); // Add the email column as a foreign key
             $table->timestamps();
             
             

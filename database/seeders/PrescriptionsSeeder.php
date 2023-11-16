@@ -18,8 +18,8 @@ class PrescriptionsSeeder extends Seeder
         $prescription->indications = 'Take with meals';
         $prescription->duration = '7';
         $prescription->frecuency = 'Twice a day';
-        $prescription->patient_id = 1; // Ajusta según tu lógica
-        $prescription->medicines_id = 1; // Ajusta según tu lógica
+        $prescription->patient_id = 1; // Adjust according to your logic
+        $prescription->medicines_id = 1; // Adjust according to your logic
         $prescription->tradename = 'Medicine XYZ';
         $prescription->save();
     }

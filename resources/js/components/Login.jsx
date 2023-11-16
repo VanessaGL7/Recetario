@@ -26,17 +26,17 @@ const Login = () => {
       dispatch(setToken(newToken));
       setSuccessMessage('Successful login'); // Update success message
 
-      // Redirige al usuario después del inicio de sesión
+      // Redirect user after login
       if (email === 'admin@gmail.com') {
         if (newToken) {
           console.log('ADMIN');
-          navigate('/RECETARIO/Recetario/public/MenuAdm'); // Ruta para la página de administrador
+          navigate('/RECETARIO/Recetario/public/MenuAdm'); // Path for the admin page
         }
       } else {
         if (newToken) {
           console.log('USER');
-          navigate('/RECETARIO/Recetario/public/MenuUser'); // Ruta para la página de administrador
-          //navigate('/user'); // Ruta para la página de usuario
+          navigate('/RECETARIO/Recetario/public/MenuUser'); // Path for the admin page
+          //navigate('/user'); // Route for the user page
         }
       }
     } catch (error) {

@@ -90,7 +90,7 @@ const MedicinesTypeCrud = () => {
     fetchMedicinesTypes();
   }, []);
 
-  // Filtrar tipos de medicinas por término de búsqueda
+  // Filter types of medicines by search term
   const filteredMedicinesTypes = medicinesTypes.filter((medicineType) =>
     medicineType.type_name.toLowerCase().includes(searchTerm.toLowerCase())
   );

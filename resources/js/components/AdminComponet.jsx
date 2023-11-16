@@ -10,7 +10,7 @@ const AdminComponent = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('API_ENDPOINT'); // Reemplaza 'API_ENDPOINT' con la ruta de tu API
+      const response = await axios.get('API_ENDPOINT'); // Replace 'API_ENDPOINT' with your API path
       setData(response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -19,7 +19,7 @@ const AdminComponent = () => {
 
   useEffect(() => {
     fetchData();
-  }, []); // Se ejecuta una vez al cargar el componente
+  }, []); // Executed once when loading the component
 
   const handleShow = (item) => {
     setFormData(item);
@@ -33,11 +33,11 @@ const AdminComponent = () => {
 
   const handleSave = async () => {
     try {
-      // Lógica para guardar o actualizar datos en la base de datos
-      // Puedes usar formData para enviar los datos al servidor
-      await axios.post('API_ENDPOINT', formData); // Reemplaza 'API_ENDPOINT' con la ruta de tu API
-      fetchData(); // Vuelve a cargar los datos después de guardar o actualizar
-      handleClose(); // Cierra el modal
+      // Logic to save or update data in the database
+      // You can use formData to send the data to the server
+      await axios.post('API_ENDPOINT', formData); // Replace 'API_ENDPOINT' with your API path
+      fetchData(); // Reload data after saving or updating
+      handleClose(); // Close the modal
     } catch (error) {
       console.error('Error saving data:', error);
     }
@@ -45,9 +45,9 @@ const AdminComponent = () => {
 
   const handleDelete = async (id) => {
     try {
-      // Lógica para eliminar datos de la base de datos
-      await axios.delete(`API_ENDPOINT/${id}`); // Reemplaza 'API_ENDPOINT' con la ruta de tu API
-      fetchData(); // Vuelve a cargar los datos después de eliminar
+      // Logic to delete data from the database
+      await axios.delete(`API_ENDPOINT/${id}`); // Replace 'API_ENDPOINT' with your API path
+      fetchData(); // Reload data after deleting
     } catch (error) {
       console.error('Error deleting data:', error);
     }
@@ -59,7 +59,6 @@ const AdminComponent = () => {
         <thead>
           <tr>
             <th>ID</th>
-            {/* Agrega más encabezados según tus datos */}
             <th>Nombre</th>
             <th>Acciones</th>
           </tr>
@@ -68,7 +67,6 @@ const AdminComponent = () => {
           {data.map((item) => (
             <tr key={item.id}>
               <td>{item.id}</td>
-              {/* Agrega más celdas según tus datos */}
               <td>{item.name}</td>
               <td>
                 <Button variant="info" onClick={() => handleShow(item)}>
@@ -89,7 +87,6 @@ const AdminComponent = () => {
         </Modal.Header>
         <Modal.Body>
           <Form>
-            {/* Agrega más campos según tus datos */}
             <Form.Group controlId="formName">
               <Form.Label>Nombre:</Form.Label>
               <Form.Control

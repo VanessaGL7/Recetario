@@ -93,7 +93,7 @@ const DoctorsCrud = () => {
     fetchDoctors();
   }, []);
 
-  // Filtrar doctores por término de búsqueda
+  // Filter doctors by search term
   const filteredDoctors = doctors.filter((doctor) =>
     doctor.doctor_name.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -210,7 +210,6 @@ const DoctorsCrud = () => {
                 onChange={handleFormChange}
               />
             </Form.Group>
-            {/* Add other form fields here... */}
           </Form>
         </Modal.Body>
         <Modal.Footer>

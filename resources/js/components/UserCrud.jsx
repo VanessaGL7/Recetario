@@ -93,7 +93,7 @@ const UserCrud = () => {
     fetchUsers();
   }, []);
 
-  // Filtrar usuarios por término de búsqueda
+  // Filter users by search term
   const filteredUsers = users.filter((user) =>
     user.name.toLowerCase().includes(searchTerm.toLowerCase())
   );

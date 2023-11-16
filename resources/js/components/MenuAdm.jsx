@@ -15,9 +15,9 @@ const MenuAdm = () => {
     const navigate = useNavigate();
   
     const handleLogout = () => {
-      // Dispatch de la acción para borrar el token
+      // Dispatch action to clear token
       dispatch(clearToken());
-      // Redirige a la página principal y reemplaza la entrada actual en el historial
+      // Redirect to the main page and replace the current entry in history
       navigate('/RECETARIO/Recetario/public/', { replace: true, state: { resetScroll: true } });
     };
 

@@ -19,7 +19,7 @@ const MedicinesUsers = () => {
     fetchMedicines();
   }, []);
 
-  // Filtrar medicamentos por término de búsqueda
+  // Filter types of medicines by search term
   const filteredMedicines = medicines.filter((medicine) =>
     medicine.tradename.toLowerCase().includes(searchTerm.toLowerCase())
   );

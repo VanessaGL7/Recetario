@@ -34,17 +34,17 @@ const Register = () => {
     try {
       const response = await axios.post('http://localhost/RECETARIO/Recetario/public/api/register', formData);
       setSuccessMessage('User registered successfully.');
-      console.log(response.data); // Manejar la respuesta según tus necesidades
+      console.log(response.data); // Manage the response according to your needs
     } catch (error) {
       if (error.response) {
         setError('This user already exists, enter another email');
-        // La solicitud fue hecha, pero el servidor respondió con un código de estado que no está en el rango de 2xx
+        // The request was made, but the server responded with a status code that is not in the range of 2xx
         setError(error.response.data.message);
       } else if (error.request) {
-        // La solicitud fue hecha, pero no se recibió ninguna respuesta
+        // The request was made, but no response was received
         setError('This user already exists, enter another email');
       } else {
-        // Algo sucedió en la configuración de la solicitud que desencadenó un error
+        // Something happened in the application configuration that triggered an error
         setError('Error setting up the request.');
       }
     }

@@ -94,7 +94,7 @@ const PatientsCrud = () => {
     fetchPatients();
   }, []);
 
-  // Filtrar pacientes por término de búsqueda
+  // Filter patients by search term
   const filteredPatients = patients.filter((patient) =>
     patient.patient_name.toLowerCase().includes(searchTerm.toLowerCase())
   );
