@@ -10,13 +10,13 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::all(); // Cambia el modelo a User
+        $users = User::all(); // Change the model to User
         return response()->json($users);
     }
 
     public function create()
     {
-        // Puedes implementar la lógica para crear un usuario si es necesario
+        // You can implement the logic to create a user if needed
     }
 
     public function store(Request $request)
@@ -24,7 +24,7 @@ class UserController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => bcrypt($request->password), // Asegúrate de cifrar la contraseña
+            'password' => bcrypt($request->password), // Make sure to encrypt the password
             'role' => $request->role,
         ]);
 
@@ -72,16 +72,18 @@ class UserController extends Controller
     {
         $user = User::findOrFail($request->id);
 
-        // Elimina el registro
+        // Delete the record
         $user->delete();
 
         return response()->json(['message' => 'User deleted successfully']);
     }
-    public function token(){
+
+    public function token()
+    {
         if (Auth::attempt(['email' => request('email'), 'password' => request('password')])) {
             $user = Auth::user();
             $token = $user->createToken('MyAppToken')->accessToken;
-    
+
             return response()->json(['token' => $token]);
         } else {
             return response()->json(['error' => 'Unauthorized'], 401);

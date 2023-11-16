@@ -16,7 +16,6 @@ class Medicinestype extends Model
     {
         return $this->hasMany(Medicines::class,'id_medicine_type');
     }
-    // En el modelo Medicine
     public function Prescriptions()
     {
         return $this->hasMany(Prescriptions::class, 'id_medicine_type');

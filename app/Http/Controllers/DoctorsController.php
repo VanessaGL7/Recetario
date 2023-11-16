@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Doctors;
 
-
 class DoctorsController extends Controller
 {
     /**
@@ -22,7 +21,7 @@ class DoctorsController extends Controller
      */
     public function create()
     {
-        // Tu lógica para mostrar el formulario de creación de médicos
+        // Your logic to display the form for creating doctors
     }
 
     /**
@@ -86,14 +85,12 @@ class DoctorsController extends Controller
      */
     public function destroy(Request $request)
     {
-        // Utiliza el método findOrFail para obtener un modelo existente o lanzar una excepción 404
+        // Use the findOrFail method to get an existing model or throw a 404 exception
         $doctor = Doctors::findOrFail($request->id);
 
-        // Elimina el registro
+        // Delete the record
         $doctor->delete();
 
-        return response()->json(['message' => 'Doctor eliminado con éxito']);
+        return response()->json(['message' => 'Doctor deleted successfully']);
     }
-
-    
 }

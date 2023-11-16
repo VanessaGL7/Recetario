@@ -8,7 +8,9 @@ function Menu(){
         <>
         <Navbar bg="dark" variant='dark'>
             <Container>
-                <Navbar.Brand href='#home'>Navbar</Navbar.Brand>
+            <Navbar.Brand href='#home'><img src="https://png.pngtree.com/png-vector/20190129/ourmid/pngtree-vector-medicines-icon-png-image_426810.jpg" alt="Logo"     style={{ width: '50px', height: '50px', borderRadius: '50%' }}
+ />
+            Main</Navbar.Brand>
                 <Nav className='me-auto'>
                     <Nav.Link as={Link} to="">Home</Nav.Link>
                     <Nav.Link as={Link} to="Register">Register</Nav.Link>

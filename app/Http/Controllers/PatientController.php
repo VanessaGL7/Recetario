@@ -12,8 +12,8 @@ class PatientController extends Controller
      */
     public function index()
     {
-        $doctor = Patient::all();
-        return response()->json($doctor);
+        $patient = Patient::all();
+        return response()->json($patient);
     }
 
     /**
@@ -79,12 +79,12 @@ class PatientController extends Controller
      */
     public function destroy(Request $request)
     {
-        // Utiliza el método findOrFail para obtener un modelo existente o lanzar una excepción 404
-        $doctor = Patient::findOrFail($request->id);
+        // Use the findOrFail method to get an existing model or throw a 404 exception
+        $patient = Patient::findOrFail($request->id);
 
-        // Elimina el registro
-        $doctor->delete();
+        // Delete the record
+        $patient->delete();
 
-        return response()->json(['message' => 'Doctor eliminado con éxito']);
+        return response()->json(['message' => 'Patient deleted successfully']);
     }
 }
