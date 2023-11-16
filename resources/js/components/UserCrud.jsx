@@ -18,7 +18,7 @@ const UserCrud = () => {
 
   const fetchUsers = async () => {
     try {
-      const response = await axios.get('http://localhost/RECETARIO/Recetario/public/api/users');
+      const response = await axios.get('http://localhost/Recetario/recetario/public/api/users');
       setUsers(response.data);
     } catch (error) {
       console.error('Error fetching users:', error);
@@ -50,7 +50,7 @@ const UserCrud = () => {
 
   const handleCreate = async () => {
     try {
-      await axios.post('http://localhost/RECETARIO/Recetario/public/api/users/store', formData);
+      await axios.post('http://localhost/Recetario/recetario/public/api/users/store', formData);
       handleModalClose();
       fetchUsers();
       showAlert('success', 'User created successfully.');
@@ -62,7 +62,7 @@ const UserCrud = () => {
 
   const handleUpdate = async () => {
     try {
-      await axios.post(`http://localhost/RECETARIO/Recetario/public/api/users/update/${formData.id}`, formData);
+      await axios.post(`http://localhost/Recetario/recetario/public/api/users/update/${formData.id}`, formData);
       handleModalClose();
       fetchUsers();
       showAlert('success', 'User updated successfully.');
@@ -80,7 +80,7 @@ const UserCrud = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.post(`http://localhost/RECETARIO/Recetario/public/api/users/destroy/${id}`);
+      await axios.post(`http://localhost/Recetario/recetario/public/api/users/destroy/${id}`);
       fetchUsers();
       showAlert('success', 'User deleted successfully.');
     } catch (error) {

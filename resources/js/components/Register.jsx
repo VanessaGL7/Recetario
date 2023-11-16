@@ -34,7 +34,7 @@ const Register = () => {
           console.error(error.response);
         });
     try {
-      const response = await axios.post('http://localhost/RECETARIO/Recetario/public/api/register', formData);
+      const response = await axios.post('http://localhost/Recetario/recetario/public/api/register', formData);
       setSuccessMessage('User registered successfully.');
       console.log(response.data); // Manejar la respuesta según tus necesidades
     } catch (error) {

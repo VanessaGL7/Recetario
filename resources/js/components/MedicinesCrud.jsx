@@ -23,7 +23,7 @@ const MedicinesCrud = () => {
 
   const fetchMedicines = async () => {
     try {
-      const response = await axios.get('http://localhost/RECETARIO/Recetario/public/api/medicines');
+      const response = await axios.get('http://localhost/Recetario/recetario/public/api/medicines');
       setMedicines(response.data);
     } catch (error) {
       console.error('Error fetching medicines:', error);
@@ -55,7 +55,7 @@ const MedicinesCrud = () => {
 
   const handleCreate = async () => {
     try {
-      await axios.post('http://localhost/RECETARIO/Recetario/public/api/medicines/store', formData);
+      await axios.post('http://localhost/Recetario/recetario/public/api/medicines/store', formData);
       handleModalClose();
       fetchMedicines();
       showAlert('success', 'Medicine created successfully.');
@@ -67,7 +67,7 @@ const MedicinesCrud = () => {
 
   const handleUpdate = async () => {
     try {
-      await axios.post(`http://localhost/RECETARIO/Recetario/public/api/medicines/update/${formData.id}`, formData);
+      await axios.post(`http://localhost/Recetario/recetario/public/api/medicines/update/${formData.id}`, formData);
       handleModalClose();
       fetchMedicines();
       showAlert('success', 'Medicine updated successfully.');
@@ -85,7 +85,7 @@ const MedicinesCrud = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.post(`http://localhost/RECETARIO/Recetario/public/api/medicines/destroy/${id}`);
+      await axios.post(`http://localhost/Recetario/recetario/public/api/medicines/destroy/${id}`);
       fetchMedicines();
       showAlert('success', 'Medicine deleted successfully.');
     } catch (error) {

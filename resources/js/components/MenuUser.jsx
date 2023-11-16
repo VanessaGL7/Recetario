@@ -14,7 +14,7 @@ const MenuUser = () => {
       // Dispatch action to clear token
       dispatch(clearToken());
       // Redirect to the main page and replace the current entry in history
-      navigate('/RECETARIO/Recetario/public/', { replace: true, state: { resetScroll: true } });
+      navigate('/Recetario/recetario/public/', { replace: true, state: { resetScroll: true } });
     };
 
     return (

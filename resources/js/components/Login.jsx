@@ -15,7 +15,7 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post('http://localhost:80/RECETARIO/Recetario/public/api/login', {
+      const response = await axios.post('http://localhost:80/Recetario/recetario/public/api/login', {
         email: email,
         password: password,
       });
@@ -32,12 +32,12 @@ const Login = () => {
       if (email === 'admin@gmail.com') {
         if (newToken) {
           console.log('ADMIN');
-          navigate('/RECETARIO/Recetario/public/MenuAdm'); // Path for the admin page
+          navigate('/Recetario/recetario/public/MenuAdm'); // Path for the admin page
         }
       } else {
         if (newToken) {
           console.log('USER');
-          navigate('/RECETARIO/Recetario/public/MenuUser'); // Path for the admin page
+          navigate('/Recetario/recetario/public/MenuUser'); // Path for the admin page
           //navigate('/user'); // Route for the user page
         }
       }
