@@ -2,17 +2,15 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { setToken } from './authSlice';
 import MenuAdm from './MenuAdm';
 import MenuUser from './MenuUser';
 
 const Login = () => {
   const [email, setEmail] = useState('');
+  const [token, setToken] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState(''); // Add this line
   const [successMessage, setSuccessMessage] = useState(''); // Add this line
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleLogin = async () => {
@@ -21,9 +19,13 @@ const Login = () => {
         email: email,
         password: password,
       });
+      axios.get('/oauth/personal-access-tokens')
+      .then(response => {
+        console.log(response.data);
+      });
 
       const newToken = response.data.data.token;
-      dispatch(setToken(newToken));
+      setToken(newToken);
       setSuccessMessage('Successful login'); // Update success message
 
       // Redirect user after login

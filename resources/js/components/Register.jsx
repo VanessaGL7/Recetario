@@ -12,39 +12,41 @@ const Register = () => {
 
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState('');
+  const [accessToken, setAccessToken] = useState('');
 
   const handleFormChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleRegister = async () => {
+      
     const data = {
-      name: '',
-      scopes: []
-    };
-
-    axios.post('/oauth/personal-access-tokens', data)
-      .then(response => {
-        console.log(response.data.accessToken);
-      })
-      .catch(error => {
-        // List errors on error.response...
-        console.error(error.response);
-      });
+        name: '',
+        scopes: '',
+      };
+  
+      axios.post('/oauth/personal-access-tokens', data)
+        .then(response => {
+          console.log(response.data.accessToken);
+        })
+        .catch(error => {
+          // List errors on error.response...
+          console.error(error.response);
+        });
     try {
       const response = await axios.post('http://localhost/RECETARIO/Recetario/public/api/register', formData);
       setSuccessMessage('User registered successfully.');
-      console.log(response.data); // Manage the response according to your needs
+      console.log(response.data); // Manejar la respuesta según tus necesidades
     } catch (error) {
       if (error.response) {
         setError('This user already exists, enter another email');
-        // The request was made, but the server responded with a status code that is not in the range of 2xx
+        // La solicitud fue hecha, pero el servidor respondió con un código de estado que no está en el rango de 2xx
         setError(error.response.data.message);
       } else if (error.request) {
-        // The request was made, but no response was received
+        // La solicitud fue hecha, pero no se recibió ninguna respuesta
         setError('This user already exists, enter another email');
       } else {
-        // Something happened in the application configuration that triggered an error
+        // Algo sucedió en la configuración de la solicitud que desencadenó un error
         setError('Error setting up the request.');
       }
     }
@@ -115,6 +117,7 @@ const Register = () => {
                 >
                   Register
                 </Button>
+                {accessToken && <p>Access Token: {accessToken}</p>}
               </div>
             </Form>
           </Col>
