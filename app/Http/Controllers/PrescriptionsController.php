@@ -34,16 +34,15 @@ class PrescriptionsController extends Controller
     }
 
     public function show(Request $request)
-{
-    $prescription = Prescriptions::find($request->id);
+    {
+        $prescription = Prescriptions::find($request->id);
 
-    if (!$prescription) {
-        return response()->json(['error' => 'Prescription not found'], 404);
+        if (!$prescription) {
+            return response()->json(['error' => 'Prescription not found'], 404);
+        }
+
+        return response()->json(['data' => $prescription], 200);
     }
-
-    return response()->json(['data' => $prescription], 200);
-}
-
 
     public function edit(Request $request)
     {
@@ -69,19 +68,16 @@ class PrescriptionsController extends Controller
         $prescription->save();
 
         return $prescription;
-
     }
 
     public function destroy(Request $request)
     {
-         // Utiliza el método findOrFail para obtener un modelo existente o lanzar una excepción 404
-         $prescriptions = Prescriptions::findOrFail($request->id);
+        // Use the findOrFail method to get an existing model or throw a 404 exception
+        $prescription = Prescriptions::findOrFail($request->id);
 
-         // Elimina el registro
-         $prescriptions->delete();
- 
-         return response()->json(['message' => 'Doctor eliminado con éxito']);
+        // Delete the record
+        $prescription->delete();
+
+        return response()->json(['message' => 'Prescription deleted successfully']);
     }
-
 }
-

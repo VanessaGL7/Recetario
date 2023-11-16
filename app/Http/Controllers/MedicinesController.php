@@ -13,14 +13,15 @@ class MedicinesController extends Controller
     public function index()
     {
         $medicine = Medicines::all();
-        return response()->json($medicine);    }
+        return response()->json($medicine);
+    }
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        // Tu lógica para mostrar el formulario de creación de medicamentos
+        // Your logic to display the medicine creation form
     }
 
     /**
@@ -50,7 +51,7 @@ class MedicinesController extends Controller
     public function show(Request $request)
     {
         $medicine = Medicines::where('tradename', $request->tradename)
-            ->orWhere('id', $request->id) // Puedes buscar también por ID
+            ->orWhere('id', $request->id) // You can also search by ID
             ->get();
 
         return $medicine;
@@ -95,13 +96,12 @@ class MedicinesController extends Controller
      */
     public function destroy(Request $request)
     {
-              // Utiliza el método findOrFail para obtener un modelo existente o lanzar una excepción 404
-              $medcine = Medicines::findOrFail($request->id);
+        // Use the findOrFail method to get an existing model or throw a 404 exception
+        $medicine = Medicines::findOrFail($request->id);
 
-              // Elimina el registro
-              $medcine->delete();
-      
-              return response()->json(['message' => 'Doctor eliminado con éxito']);
+        // Delete the record
+        $medicine->delete();
+
+        return response()->json(['message' => 'Medicine deleted successfully']);
     }
-
 }
