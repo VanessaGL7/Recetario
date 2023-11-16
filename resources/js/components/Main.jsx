@@ -20,7 +20,7 @@ import Register from "./Register";
 function Main() {
     return (
       <Routes>
-        <Route path="/recetario/recetario/public/" element={<Menu />}>
+        <Route path="/RECETARIO/Recetario/public/" element={<Menu />}>
           <Route index element={<Login />} />
           <Route path="MenuAdm" element={<MenuAdm />}>
             <Route path="DoctorsCrud" element={<DoctorsCrud />} />

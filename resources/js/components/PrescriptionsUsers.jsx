@@ -8,7 +8,7 @@ const PrescriptionsCrud = () => {
 
     const fetchPrescriptions = async () => {
         try {
-            const response = await axios.get('http://localhost/Recetario/recetario/public/api/prescriptions');
+            const response = await axios.get('http://localhost/RECETARIO/Recetario/public/api/prescriptions');
             setPrescriptions(response.data);
         } catch (error) {
             console.error('Error fetching prescriptions:', error);

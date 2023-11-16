@@ -18,7 +18,7 @@ const DoctorsCrud = () => {
 
   const fetchDoctors = async () => {
     try {
-      const response = await axios.get('http://localhost/Recetario/recetario/public/api/doctors');
+      const response = await axios.get('http://localhost/RECETARIO/Recetario/public/api/doctors');
       setDoctors(response.data);
     } catch (error) {
       console.error('Error fetching doctors:', error);
@@ -50,7 +50,7 @@ const DoctorsCrud = () => {
 
   const handleCreate = async () => {
     try {
-      await axios.post('http://localhost/Recetario/recetario/public/api/doctors/store', formData);
+      await axios.post('http://localhost/RECETARIO/Recetario/public/api/doctors/store', formData);
       handleModalClose();
       fetchDoctors();
       showAlert('success', 'Doctor created successfully.');
@@ -62,7 +62,7 @@ const DoctorsCrud = () => {
 
   const handleUpdate = async () => {
     try {
-      await axios.post(`http://localhost/Recetario/recetario/public/api/doctors/update/${formData.id}`, formData);
+      await axios.post(`http://localhost/RECETARIO/Recetario/public/api/doctors/update/${formData.id}`, formData);
       handleModalClose();
       fetchDoctors();
       showAlert('success', 'Doctor updated successfully.');
@@ -80,7 +80,7 @@ const DoctorsCrud = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.post(`http://localhost/Recetario/recetario/public/api/doctors/destroy/${id}`);
+      await axios.post(`http://localhost/RECETARIO/Recetario/public/api/doctors/destroy/${id}`);
       fetchDoctors();
       showAlert('success', 'Doctor deleted successfully.');
     } catch (error) {
@@ -149,7 +149,11 @@ const DoctorsCrud = () => {
           ))}
         </tbody>
       </Table>
-
+      {alerts.map((alert) => (
+        <Alert key={alert.id} variant={alert.variant}>
+          {alert.message}
+        </Alert>
+      ))}
       <Modal show={showModal} onHide={handleModalClose}>
         <Modal.Header closeButton>
           <Modal.Title>{formData.id ? 'Edit Doctor' : 'Add Doctor'}</Modal.Title>
@@ -218,12 +222,6 @@ const DoctorsCrud = () => {
           </Button>
         </Modal.Footer>
       </Modal>
-
-      {alerts.map((alert) => (
-        <Alert key={alert.id} variant={alert.variant}>
-          {alert.message}
-        </Alert>
-      ))}
     </div>
   );
 };
