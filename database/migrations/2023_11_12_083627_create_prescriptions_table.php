@@ -23,8 +23,8 @@ return new class extends Migration
             $table->timestamps();
 
             // Definir las claves foráneas
-            $table->foreign('patient_id')->references('id')->on('patients');
-            $table->foreign('medicines_id')->references('id')->on('medicines');
+            $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
+            $table->foreign('medicines_id')->references('id')->on('medicines')->onDelete('cascade');
         });
     }
 

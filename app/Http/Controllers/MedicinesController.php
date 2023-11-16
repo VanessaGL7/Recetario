@@ -12,8 +12,8 @@ class MedicinesController extends Controller
      */
     public function index()
     {
-        // Tu lógica para mostrar una lista de medicamentos
-    }
+        $medicine = Medicines::all();
+        return response()->json($medicine);    }
 
     /**
      * Show the form for creating a new resource.
@@ -38,6 +38,7 @@ class MedicinesController extends Controller
             'route_of_administration' => $request->route_of_administration,
             'expiration' => $request->expiration,
             'id_medicine_type' => $request->id_medicine_type,
+            'image' => $request->image,
         ]);
 
         return $medicine;
@@ -82,6 +83,8 @@ class MedicinesController extends Controller
         $medicine->route_of_administration = $request->route_of_administration;
         $medicine->expiration = $request->expiration;
         $medicine->id_medicine_type = $request->id_medicine_type;
+        $medicine->image = $request->image;
+
         $medicine->save();
 
         return $request;
@@ -92,13 +95,13 @@ class MedicinesController extends Controller
      */
     public function destroy(Request $request)
     {
-        $medicine = Medicines::where('id', $request->id)->delete();
+              // Utiliza el método findOrFail para obtener un modelo existente o lanzar una excepción 404
+              $medcine = Medicines::findOrFail($request->id);
 
-        return 'ok';
+              // Elimina el registro
+              $medcine->delete();
+      
+              return response()->json(['message' => 'Doctor eliminado con éxito']);
     }
 
-    public function token()
-    {
-        return csrf_token();
-    }
 }

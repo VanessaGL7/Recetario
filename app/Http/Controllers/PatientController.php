@@ -12,7 +12,8 @@ class PatientController extends Controller
      */
     public function index()
     {
-        // Tu lógica para mostrar una lista de pacientes
+        $doctor = Patient::all();
+        return response()->json($doctor);
     }
 
     /**
@@ -78,9 +79,12 @@ class PatientController extends Controller
      */
     public function destroy(Request $request)
     {
-        $patient = Patient::where('id', $request->id)->delete();
+        // Utiliza el método findOrFail para obtener un modelo existente o lanzar una excepción 404
+        $doctor = Patient::findOrFail($request->id);
 
-        return 'ok';
+        // Elimina el registro
+        $doctor->delete();
+
+        return response()->json(['message' => 'Doctor eliminado con éxito']);
     }
-
 }

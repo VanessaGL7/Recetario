@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->string('role')->default('user'); // Agregar columna para el rol
-            $table->string('image')->nullable(); // Agregar columna para la imagen
             $table->timestamps();
 
         

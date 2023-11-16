@@ -12,7 +12,8 @@ class MedicinesTypeController extends Controller
      */
     public function index()
     {
-        // Lógica para mostrar una lista de medicinas
+        $medicine = Medicinestype::all();
+        return response()->json($medicine);
     }
 
     /**
@@ -70,24 +71,13 @@ class MedicinesTypeController extends Controller
      */
     public function destroy(Request $request)
     {
-        $medicine = Medicinestype::where('id', $request->id);
-        if (!$medicine) {
-            return response()->json(['message' => $medicine], 404);
-        }
+        // Utiliza el método findOrFail para obtener un modelo existente o lanzar una excepción 404
+        $doctor = Medicinestype::findOrFail($request->id);
 
-        // Eliminar registros relacionados en otras tablas
-        $medicine->medicines()->delete();
-        $medicine->prescriptions()->delete();
+        // Elimina el registro
+        $doctor->delete();
 
-        // Ahora elimina el registro principal
-        $medicine->delete();
-
-        return response()->json(['message' => 'Registro eliminado con éxito']);
+        return response()->json(['message' => 'Doctor eliminado con éxito']);
     }
 
-
-    public function token()
-    {
-        return csrf_token();
-    }
 }

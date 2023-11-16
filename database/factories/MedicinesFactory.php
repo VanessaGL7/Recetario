@@ -26,6 +26,7 @@ class MedicinesFactory extends Factory
             'route_of_administration' => $this->faker->word,
             'expiration' => $this->faker->date,
             'id_medicine_type' => \App\Models\Medicinestype::all()->random()->id,
+            'image' => $this->faker->sentence,
         ];
     }
 }

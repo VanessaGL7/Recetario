@@ -12,3 +12,51 @@
   .shadow {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
+  /* Estilos en CSS */
+.menu-container {
+  
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.menu-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-nav li {
+  margin-bottom: 10px;
+}
+
+.menu-nav a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+}
+
+.main-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.logout-button {
+  float: right; /* Para posicionar el botón a la derecha */
+  margin-right: 10px; /* Ajusta el margen derecho según sea necesario */
+  background-color: #e74c3c; /* Cambia el color de fondo según tu diseño */
+  color: #fff; /* Cambia el color del texto según tu diseño */
+  border: none;
+  padding: 10px 15px; /* Ajusta el relleno según sea necesario */
+  cursor: pointer;
+  border-radius: 5px; /* Añade esquinas redondeadas según tu diseño */
+}
+
+.logout-button:hover {
+  background-color: #c0392b; /* Cambia el color de fondo al pasar el ratón */
+}

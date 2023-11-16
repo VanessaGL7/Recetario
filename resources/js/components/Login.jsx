@@ -2,15 +2,17 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { useDispatch } from 'react-redux';
+import { setToken } from './authSlice';
 import MenuAdm from './MenuAdm';
+import MenuUser from './MenuUser';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
-  const [token, setToken] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(''); // Add this line
+  const [successMessage, setSuccessMessage] = useState(''); // Add this line
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleLogin = async () => {
@@ -21,12 +23,8 @@ const Login = () => {
       });
 
       const newToken = response.data.data.token;
-      setToken(newToken);
-
-      // const userRole = response.data.data.role;
-      console.log('Access token:', newToken);
-      setSuccessMessage('Successful login');
-      setErrorMessage('');
+      dispatch(setToken(newToken));
+      setSuccessMessage('Successful login'); // Update success message
 
       // Redirige al usuario después del inicio de sesión
       if (email === 'admin@gmail.com') {
@@ -37,10 +35,10 @@ const Login = () => {
       } else {
         if (newToken) {
           console.log('USER');
+          navigate('/recetario/recetario/public/MenuUser'); // Ruta para la página de administrador
           //navigate('/user'); // Ruta para la página de usuario
         }
       }
-
     } catch (error) {
       setErrorMessage('Error logging in. Please check your credentials.');
     }
@@ -48,14 +46,7 @@ const Login = () => {
 
   return (
     <div className="login-container"
-      style={{
-        backgroundImage: 'url("https://media0.giphy.com/media/ccKEsBDAAQTrutQ9LA/giphy.gif?cid=ecf05e47fyxzl2ak0f6maukyce8favh7jj1e0hwtv11x02du&ep=v1_gifs_search&rid=giphy.gif&ct=g")',
-        backgroundSize: 'cover',
-        minHeight: '100vh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}>
+      >
       <Container className="mt-5" >
         <Row className="justify-content-center">
           <Col xs={12} sm={8} md={6} lg={4} className="shadow p-3 mb-5 bg-white rounded">

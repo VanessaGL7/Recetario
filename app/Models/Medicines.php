@@ -11,13 +11,13 @@ class Medicines extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id','tradename','active_ingredient','presentation','dose','original_amount','current_amount','route_of_administration','expiration','id_medicine_type'];
+    protected $fillable = ['id','tradename','active_ingredient','presentation','dose','original_amount','current_amount','route_of_administration','expiration','id_medicine_type','image'];
 
     public function Medicinestype()
     {
         return $this->belongsTo(Medicinestype::class, 'id_medicine_type');
     }
-    protected $fillable2 = ['id','tradename','active_ingredient','presentation','dose','original_amount','current_amount','route_of_administartion','expiration','id_medicine_type'];
+    protected $fillable2 = ['id','tradename','active_ingredient','presentation','dose','original_amount','current_amount','route_of_administartion','expiration','id_medicine_type','image'];
 
     public function Prescriptions(): BelongsTo
     {

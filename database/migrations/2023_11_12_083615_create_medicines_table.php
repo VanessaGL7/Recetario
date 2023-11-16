@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('route_of_administration');
             $table->date('expiration');
             $table->unsignedBigInteger('id_medicine_type'); // ForeignKey
+            $table->string('image');
             $table->timestamps();
 
             // Definición de clave foránea

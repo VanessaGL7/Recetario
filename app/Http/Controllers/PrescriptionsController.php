@@ -9,7 +9,8 @@ class PrescriptionsController extends Controller
 {
     public function index()
     {
-
+        $prescriptions = Prescriptions::all();
+        return response()->json($prescriptions);
     }
 
     public function create()
@@ -73,24 +74,14 @@ class PrescriptionsController extends Controller
 
     public function destroy(Request $request)
     {
-        $prescription = Prescriptions::find($request->id);
+         // Utiliza el método findOrFail para obtener un modelo existente o lanzar una excepción 404
+         $prescriptions = Prescriptions::findOrFail($request->id);
 
-        if (!$prescription) {
-            return response()->json(['message' => 'Prescripción no encontrada'], 404);
-        }
-
-        $isDeleted = $prescription->delete();
-
-        if ($isDeleted) {
-            return response()->json(['message' => 'Prescripción eliminada con éxito']);
-        } else {
-            return response()->json(['message' => 'Error al eliminar la prescripción'], 500);
-        }
+         // Elimina el registro
+         $prescriptions->delete();
+ 
+         return response()->json(['message' => 'Doctor eliminado con éxito']);
     }
 
-    public function token()
-    {
-        return csrf_token();
-    }
 }
 

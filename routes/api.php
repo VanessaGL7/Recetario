@@ -54,24 +54,27 @@ Route::middleware('auth:api')->group(function () {
 
  //UserList________________________________________________________________________
  Route::get('users',[UserController::class,'index']);
+ Route::post('/users/store', [UserController::class, 'store']);
+ Route::post('/users/update/{id}', [UserController::class, 'update']);
+ Route::post('/users/destroy/{id}', [UserController::class, 'destroy']);
  //Doctors_________________________________________________________________________
  Route::post('/doctors/store', [DoctorsController::class, 'store']);
- Route::post('/doctors/update', [DoctorsController::class, 'update']);
- Route::post('/doctors/destroy', [DoctorsController::class, 'destroy']);
+ Route::post('/doctors/update/{id}', [DoctorsController::class, 'update']);
+ Route::post('/doctors/destroy/{id}', [DoctorsController::class, 'destroy']);
 
  //Medicines_______________________________________________________________________
  Route::post('/medicines/store', [MedicinesController::class, 'store']);
- Route::post('/medicines/update', [MedicinesController::class, 'update']);
- Route::delete('/medicines/destroy', [MedicinesController::class, 'destroy']);
+ Route::post('/medicines/update/{id}', [MedicinesController::class, 'update']);
+ Route::post('/medicines/destroy/{id}', [MedicinesController::class, 'destroy']);
  //MedicineTypes___________________________________________________________________
  Route::post('/medicine-types/store', [MedicinesTypeController::class, 'store']);
- Route::post('/medicine-types/update', [MedicinesTypeController::class, 'update']);
- Route::delete('/medicine-types/destroy', [MedicinesTypeController::class, 'destroy']);
+ Route::post('/medicine-types/update/{id}', [MedicinesTypeController::class, 'update']);
+ Route::post('/medicine-types/destroy/{id}', [MedicinesTypeController::class, 'destroy']);
  //Patients________________________________________________________________________
  Route::post('/patients/store', [PatientController::class, 'store']);
- Route::post('/patients/update', [PatientController::class, 'update']);
- Route::delete('/patients/destroy', [PatientController::class, 'destroy']);
+ Route::post('/patients/update/{id}', [PatientController::class, 'update']);
+ Route::post('/patients/destroy/{id}', [PatientController::class, 'destroy']);
  //Prescriptions___________________________________________________________________
  Route::post('/prescriptions/store', [PrescriptionsController::class, 'store']);
- Route::post('/prescriptions/update', [PrescriptionsController::class, 'update']);
- Route::delete('/prescriptions/destroy', [PrescriptionsController::class, 'destroy']);
+ Route::post('/prescriptions/update/{id}', [PrescriptionsController::class, 'update']);
+ Route::post('/prescriptions/destroy/{id}', [PrescriptionsController::class, 'destroy']);

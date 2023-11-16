@@ -86,9 +86,13 @@ class DoctorsController extends Controller
      */
     public function destroy(Request $request)
     {
-        $doctor = Doctors::where('id', $request->id)->delete();
+        // Utiliza el método findOrFail para obtener un modelo existente o lanzar una excepción 404
+        $doctor = Doctors::findOrFail($request->id);
 
-        return 'ok';
+        // Elimina el registro
+        $doctor->delete();
+
+        return response()->json(['message' => 'Doctor eliminado con éxito']);
     }
 
     
